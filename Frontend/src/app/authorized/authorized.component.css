@@ -1,0 +1,50 @@
+/* authorized.component.css */
+.front {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://media.istockphoto.com/id/958693744/vector/abstract-red-light-trail-on-blue-background.jpg?s=1024x1024&w=0&k=20&c=NMWPgT3zSw2UxluLVNmhoQUcOuA_FgzQIvw5aDGQkVc=') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form-signin {
+  background: rgba(16, 18, 27, 20%);
+  padding: 20px;
+  min-height: 50vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+  min-width: 60vh;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 50%);
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido horizontalmente */
+  justify-content: center; /* Centra el contenido verticalmente */
+  min-width: 50vh; /* Asegura que el contenedor ocupe al menos el ancho de la ventana */
+  padding: 70px;
+  box-sizing: border-box;
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spinner mat-spinner {
+  margin-bottom: 20px;
+}
+
+.message {
+  color: white;
+  font-size: 1.5rem;
+}

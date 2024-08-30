@@ -1,0 +1,100 @@
+<div class="background h-screen w-full overflow-hidden lg:p-4">
+  <div class="content relative h-screen overflow-hidden lg:rounded-2xl">
+    <div class="flex items-start">
+      <div>
+        <h1 class="mb-5">Mis Usuarios</h1>
+      </div>
+      <div class="text-end">
+        <section>
+          <div class="example-button-row">
+            <div class="example-flex-container">
+              <div class="example-button-container">
+                <button mat-fab extended class="btn-home"  [routerLink]="userRole === 'admin' ? '/homeAdmin' : '/homeUser'">
+                  <mat-icon>home</mat-icon>
+                  Inicio
+                </button>
+              </div>
+              <div class="example-button-container" *ngIf="userRole === 'admin'">
+                <button mat-fab extended class="btn-add" routerLink="/nuevo">
+                  <mat-icon>add</mat-icon>
+                  Agregar Usuario
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <main>
+    <div class="container">
+      <div class="mt-8 rounded-2xl" style="background: rgb(146 151 179 / 13%)">
+        <div class="container mx-auto">
+          <div class="py-8">
+            <div class="py-4">
+              <div class="max-w-full overflow-x-auto rounded-lg">
+                <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource">
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                      <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
+                        mat-header-cell *matHeaderCellDef> ID </th>
+                      <td class="border-b border-gray-200 p-5 text-sm" mat-cell *matCellDef="let usuario">
+                        {{usuario.id}} </td>
+                    </ng-container>
+
+                    <!-- Nombre Column -->
+                    <ng-container matColumnDef="nombre">
+                      <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
+                        mat-header-cell *matHeaderCellDef> Nombre </th>
+                      <td class="border-b border-gray-200 p-5 text-sm" mat-cell *matCellDef="let usuario">
+                        {{usuario.nombre}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                      <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
+                        mat-header-cell *matHeaderCellDef> Email </th>
+                      <td class="border-b border-gray-200 p-5 text-sm" mat-cell *matCellDef="let usuario">
+                        {{usuario.email}} </td>
+                    </ng-container>
+
+                    <!-- Operaciones Column -->
+                    <ng-container matColumnDef="operaciones">
+                      <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
+                        mat-header-cell *matHeaderCellDef> Operaciones </th>
+                      <td class="border-b border-gray-200 p-5 text-sm" mat-cell *matCellDef="let usuario">
+                        <div class="example-button-row">
+                          <div class="example-flex-container">
+                            <button mat-fab extended class="btn-edit"
+                              [routerLink]="['/mostrarUsuarios', usuario.id, 'editar']">
+                              <mat-icon>edit</mat-icon>
+                              Editar
+                            </button>
+
+                            <button mat-fab extended class="btn-delete" (click)="delete(usuario)">
+                              <mat-icon>delete</mat-icon>
+                              Eliminar
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[3, 6, 10]" showFirstLastButtons
+                    aria-label="Select page of users"></mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="text-white">
+        &copy; 2024 Todos los derechos reservados.
+      </footer>
+    </div>
+  </main>
+  </div>
+</div>

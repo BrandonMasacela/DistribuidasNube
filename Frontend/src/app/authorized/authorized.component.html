@@ -1,0 +1,16 @@
+<section class="front">
+  <form class="form-signin">
+    <div class="container">
+      <div class="container1">
+        <div *ngIf="isVerifying" class="spinner">
+          <mat-spinner></mat-spinner>
+          <div class="message">Verificando credenciales...</div>
+        </div>
+        <div *ngIf="!isVerifying">
+          <div *ngIf="credentialsValid" class="message">Credenciales válidas. ¡Bienvenido!</div>
+          <div *ngIf="!credentialsValid" class="message">Credenciales inválidas. Por favor, inténtelo de nuevo.</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

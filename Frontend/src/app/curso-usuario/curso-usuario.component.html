@@ -1,0 +1,93 @@
+<div class="background h-screen w-full overflow-hidden lg:p-4">
+  <div class="content relative h-screen overflow-hidden lg:rounded-2xl">
+    <div class="flex items-start">
+      <div>
+        <h1 class="mb-5">Detalle Cursos</h1>
+      </div>
+      <div class="text-end">
+        <section>
+          <div class="example-button-row">
+            <div class="example-flex-container">
+              <div class="example-button-container">
+                <button mat-fab extended class="btn-home"  [routerLink]="userRole === 'admin' ? '/homeAdmin' : '/homeUser'">
+                  <mat-icon>home</mat-icon>
+                  Inicio
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      @for(curso of cursos1; track trackById){
+      <br><br>
+      <section>
+
+        <div class="example-button-row">
+          <div class="example-flex-container">
+            <div class="example-button-container">
+              <h2 class="text-white">{{ curso.nombre }}</h2>
+            </div>
+            <div class="example-button-container" *ngIf="userRole === 'admin'">
+              <button mat-fab extended class="btn-add" (click)="openAsignarUsuarioDialog(curso.id, curso.nombre)">
+                <mat-icon>add</mat-icon>
+                Asignar Usuario
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+        <div class="mt-8 rounded-2xl" style="background: rgb(146 151 179 / 13%)">
+          <div class="container mx-auto">
+            <div class="py-8">
+              <div class="py-4">
+                <div class="max-w-full overflow-x-auto rounded-lg">
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="curso.cursoUsuarios" class="mat-elevation-z8 demo-table">
+                      <!-- ID Usuario Column -->
+                      <ng-container matColumnDef="usuarioId">
+                        <th mat-header-cell *matHeaderCellDef> ID Usuario </th>
+                        <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+                      </ng-container>
+
+                      <!-- Nombre Usuario Column -->
+                      <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef> Nombre Usuario </th>
+                        <td mat-cell *matCellDef="let element"> {{ getUsuarioNombre(element.usuarioId) }} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="operaciones">
+                        <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+                        <td mat-cell *matCellDef="let element">
+                          <button mat-fab extended class="btn-delete" (click)="desmatricular(curso.id, element.usuarioId)">
+                            <mat-icon>delete_forever</mat-icon>
+                            Desmatricular
+                          </button>
+                        </td>
+                      </ng-container>
+
+                      <!-- Correo Electrónico Column -->
+                      <ng-container matColumnDef="correo">
+                        <th mat-header-cell *matHeaderCellDef> Correo Electrónico </th>
+                        <td mat-cell *matCellDef="let element"> {{ getUsuarioCorreo(element.usuarioId) }} </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[2, 4, 7]" showFirstLastButtons
+                      aria-label="Select page of users"></mat-paginator>
+                    @if (curso.cursoUsuarios.length === 0) {
+                    <p class="text-white">No hay usuarios inscritos en este curso.</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

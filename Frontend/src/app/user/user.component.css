@@ -1,0 +1,215 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    min-height: 100vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+    min-width: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  header {
+    margin-bottom: 20px;
+    text-align: center; /* Centra el texto dentro del header */
+  }
+  
+  .logo {
+    max-width: 170px;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+  }
+  
+  .container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    min-width: 100vh; /* Asegura que el contenedor ocupe al menos el ancho de la ventana */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0; /* Espacio encima y debajo del título */
+  }
+  
+  main {
+    margin-bottom: 20px; /* Espacio debajo del contenido principal */
+    text-align: center; /* Centra el texto dentro del main */
+  }
+  
+  .btn-group {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 25px; /* Espacio entre los botones */
+    width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho disponible */
+    height: 100px; /* Ajusta la altura del contenedor de los botones */
+  }
+  
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 2000px; /* Centra el contenido dentro del contenedor del botón */
+  }
+  
+  .icon {
+    width: 50px; /* Ajusta el tamaño de los iconos */
+    margin-bottom: 10px; /* Espacio entre el icono y el botón */
+  }
+  
+  footer {
+    margin-top: 50px;
+    font-size: 0.875rem;
+    text-align: center; /* Centra el texto dentro del footer */
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+  }
+  
+  .mat-icon {
+    font-size: 23px; /* Tamaño del icono */
+  }
+  
+  .casilla {
+    height: 5rem;
+    width: 50rem;
+    min-width: 15vh;
+    margin: 0rem;
+    font-size: 1rem;
+  }
+  
+  
+  .mt-8 {
+    margin-top: 1rem;
+    align-items: center;
+  }
+  
+  .rounded-2xl {
+    border-radius: 1rem;
+  }
+  
+  
+  .py-8 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .py-4 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .max-w-full {
+    max-width: 200%;
+  }
+  
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.2rem;
+  }
+  
+  .text-white {
+    color: #fff;
+    text-align: center;
+  }
+  
+  .mb-5 {
+    color: white;
+    text-align: center;
+    padding-top: 30px;
+    text-emphasis-color: white;
+  }
+  
+  .opacity-50 {
+    opacity: 0.5;
+  }
+  
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  
+  .background {
+    background-image: url("https://media.istockphoto.com/id/958693744/vector/abstract-red-light-trail-on-blue-background.jpg?s=1024x1024&w=0&k=20&c=NMWPgT3zSw2UxluLVNmhoQUcOuA_FgzQIvw5aDGQkVc=");
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .content {
+    background-color: rgba(16 18 27 / 40%);
+    backdrop-filter: blur(24px);
+  }
+  
+  .main {
+    color: #f9fafb;
+    background-color: rgba(16 18 27 / 40%);
+    overflow: auto;
+  }
+  
+  .main::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    background: rgb(1 2 3 / 40%);
+    border-radius: 10px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    justify-content: flex-end;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+  }
+  
+  section {
+    display: table;
+    text-align: end;
+    width: 90%;
+  }
+  
+  .btn-edit {
+    background-color: #4caf50; /* Verde */
+    color: white;
+  }
+  
+  .btn-delete {
+    background-color: #f44336; /* Rojo */
+    color: white;
+  }
+  
+  .btn-home{
+    background-color: #2196f3; /* Azul */
+    color: white;
+  }
+  
+  .btn-add {
+    background-color: #ff9800; /* Naranja */
+    color: white;
+  }
+  

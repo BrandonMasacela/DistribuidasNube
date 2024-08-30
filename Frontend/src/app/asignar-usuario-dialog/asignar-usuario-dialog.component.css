@@ -1,0 +1,71 @@
+/* Asegúrate de que el mat-card ocupa el ancho total disponible */
+mat-card {
+  max-width: 100px;
+  margin: 100px;
+}
+
+/* Contenedor del formulario centrado */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente el contenido */
+  align-content: center;
+  justify-content: center; /* Centra verticalmente el contenido */
+  min-height: 200px; /* Ajusta este valor según el tamaño del formulario */
+}
+
+/* Ajusta el ancho de los campos del formulario */
+.full-width {
+  width: 200%;
+  align-content: center;
+}
+
+/* Alinea los botones al final del formulario */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 100px; /* Espaciado entre botones */
+  margin-top: 16px; /* Espacio encima de los botones */
+}
+
+mat-form-field {
+  margin-bottom: 16px; /* Espaciado entre campos del formulario */
+  width: 100%; /* Ajusta el ancho de los campos del formulario */
+}
+
+button {
+  margin-left: 8px;
+}
+
+.example-button-row {
+  display: table-cell;
+  justify-content: flex-end;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+}
+
+section {
+  display: table;
+  text-align: end;
+  width: 10%;
+}
+
+.text-end {
+  text-align: right;
+}
+

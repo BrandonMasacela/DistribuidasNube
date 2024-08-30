@@ -1,0 +1,119 @@
+<div class="background h-screen w-full overflow-hidden lg:p-4">
+  <div class="content relative h-screen overflow-hidden lg:rounded-2xl flex items-center justify-center">
+    <div class="flex items-center justify-center w-full h-full">
+      <main>
+        <div class="container mx-auto">
+          <div class="mt-8 rounded-2xl h-full w-full" style="background: rgb(146 151 179 / 13%)">
+            <div class="container1 mx-auto h-full w-full">
+              <div class="py-8 h-full w-full">
+                <div class="py-4">
+                  <div class="max-w-full overflow-x-auto rounded-lg h-full w-full">
+                    <div class="mat-elevation-z8">
+                      <form [formGroup]="registerForm" (ngSubmit)="submit()" class="h-full w-full flex flex-col justify-center">
+                        <h1 class="text-white text-center">
+                          {{ usuarioExiste ? 'Editar Usuario' : 'Registrar Usuario' }}
+                        </h1>
+                        <hr class="text-white" />
+                        <br>
+                        <label for="name" class="text-white"><b>Nombre</b></label>
+                        <br>
+                        <input type="text" formControlName="nombre" placeholder="Introduzca su nombre"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-valid': registerForm.get('nombre')?.valid && (registerForm.get('nombre')?.dirty || registerForm.get('nombre')?.touched),
+                            'is-invalid': registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.dirty || registerForm.get('nombre')?.touched)
+                          }" />
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.get('nombre')?.invalid && (registerForm.get('nombre')?.dirty || registerForm.get('nombre')?.touched)">
+                          <div *ngIf="registerForm.get('nombre')?.errors?.['minlength']">
+                            Introduzca un nombre con 5 caracteres mínimo
+                          </div>
+                          <div *ngIf="registerForm.get('nombre')?.errors?.['required']">
+                            Introduzca un nombre válido por favor
+                          </div>
+                        </div>
+                        <br>
+                        <label for="email" class="text-white"><b>Correo electrónico</b></label>
+                        <br>
+                        <input type="email" formControlName="email" placeholder="Introduzca el correo electrónico"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-valid': registerForm.get('email')?.valid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched),
+                            'is-invalid': registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)
+                          }" />
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                          <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                            Introduzca un correo electrónico válido por favor
+                          </div>
+                          <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                            El correo electrónico no sigue el formato correcto. Sigue este ejemplo: anartz&#64;example.com
+                          </div>
+                        </div>
+                        <br>
+                        <label for="psw" class="text-white"><b>Contraseña</b></label>
+                        <br>
+                        <input type="password" formControlName="password" placeholder="Introduzca la contraseña"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-valid': registerForm.get('password')?.valid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched),
+                            'is-invalid': registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)
+                          }" />
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                          <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                            Introduzca una contraseña por favor
+                          </div>
+                        </div>
+                        <br>
+                        <label for="psw-repeat" class="text-white"><b>Repetir Contraseña</b></label>
+                        <br>
+                        <input type="password" formControlName="repeatPass" placeholder="Repetir la contraseña"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-valid': registerForm.get('repeatPass')?.valid && (registerForm.get('repeatPass')?.dirty || registerForm.get('repeatPass')?.touched),
+                            'is-invalid': registerForm.get('repeatPass')?.invalid && (registerForm.get('repeatPass')?.dirty || registerForm.get('repeatPass')?.touched)
+                          }" />
+                        <div class="invalid-feedback"
+                          *ngIf="registerForm.get('repeatPass')?.invalid && (registerForm.get('repeatPass')?.dirty || registerForm.get('repeatPass')?.touched)">
+                          <div *ngIf="registerForm.get('repeatPass')?.errors?.['required']">
+                            Introduzca una contraseña por favor
+                          </div>
+                          <div *ngIf="registerForm.errors?.['passwordsMismatch'] && (registerForm.get('repeatPass')?.dirty || registerForm.get('repeatPass')?.touched)">
+                            Las contraseñas no coinciden
+                          </div>
+                        </div>
+                        <br>
+                        <div class="text-end">
+                          <section>
+                            <div class="example-button-row">
+                              <div class="example-flex-container">
+                                <div class="example-button-container">
+                                  <button mat-fab extended type="submit" [disabled]="registerForm.invalid" class="btn-home">
+                                    <mat-icon>{{ usuarioExiste ? 'update' : 'add' }}</mat-icon>
+                                    {{ usuarioExiste ? 'Actualizar Usuario' : 'Registrar Usuario' }}
+                                  </button>
+                                  <button mat-fab extended class="btn-add" routerLink="/mostrarUsuarios">
+                                    <mat-icon>cancel</mat-icon>
+                                    Cancelar
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="text-white">
+            &copy; 2024 Todos los derechos reservados.
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
