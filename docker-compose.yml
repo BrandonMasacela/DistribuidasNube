@@ -1,0 +1,153 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: appdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -q -d ${POSTGRES_DB} -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  security-authserver:
+    build:
+      context: ./security-authserver
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/usuarios
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_IDP_PROVIDER=google
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_IDP_CLIENT_ID=${TU_GOOGLE_CLIENT_ID_EN_UN_.ENV}
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_IDP_CLIENT_SECRET=${TU_GOOGLE_CLIENT_SECRET_EN_UN_.ENV}
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_IDP_SCOPE=openid, https://www.googleapis.com/auth/userinfo.profile, https://www.googleapis.com/auth/userinfo.email
+      - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_IDP_CLIENT_NAME=oauth2-client
+      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_USER_NAME_ATTRIBUTE=email
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "TuURL:9000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  msvc-usuarios:
+    build:
+      context: ./msvc-usuarios
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/appdb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=TuURL:9000
+    depends_on:
+      security-authserver:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  msvc-cursos:
+    build:
+      context: ./msvc-cursos
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/appdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=TuURL:9000
+    depends_on:
+      security-authserver:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  resource-server:
+    build:
+      context: ./resource-server
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=TuURL:9000
+    depends_on:
+      security-authserver:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./CursoUsuario
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - msvc-usuarios
+      - msvc-cursos
+      - security-authserver
+      - resource-server
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge
