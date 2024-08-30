@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Oauth2_Grupo6</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media.istockphoto.com/id/958693744/vector/abstract-red-light-trail-on-blue-background.jpg?s=1024x1024&w=0&k=20&c=NMWPgT3zSw2UxluLVNmhoQUcOuA_FgzQIvw5aDGQkVc=') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .form-signin {
+            background: rgba(16, 18, 27, 20%);
+            padding: 20px;
+            min-height: 50vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+            min-width: 60vh;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 50%);
+        }
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+            justify-content: center; /* Centra el contenido verticalmente */
+            min-width: 50vh; /* Asegura que el contenedor ocupe al menos el ancho de la ventana */
+            padding: 70px;
+            box-sizing: border-box;
+        }
+        .form-signin-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .btn-primary {
+            border-radius: 15px;
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            font-size: 1.2rem;
+        }
+        .btn-light {
+            border-radius: 15px;
+            font-size: 1.2rem;
+        }
+        .alert {
+            border-radius: 15px;
+            width: 550px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 120px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <form class="form-signin" method="post" th:action="@{/login}">
+        <div class="container1">
+            <img src="https://encuestas.espe.edu.ec/tmp/assets/46dd5aad/ESPE.png" alt="Logo" class="logo">
+            <h2 class="form-signin-heading">Iniciar Sesión</h2>
+
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                Credenciales erróneas
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                Has cerrado sesión.
+            </div>
+                <label for="username" class="sr-only">Nombre de Usuario</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Nombre de Usuario" required autofocus>
+
+                <label for="password" class="sr-only">Contraseña</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+
+                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/google-idp" role="link" style="text-transform: none;">
+                    <img width="20" style="margin-right: 5px;" alt="Sign in with Google" src="https://static.vecteezy.com/system/resources/previews/010/353/285/non_2x/colourful-google-logo-on-white-background-free-vector.jpg" />
+                    Iniciar sesión con Google
+                </a>
+            <br><br>
+            <footer class="text-white">
+                &copy; 2024 Todos los derechos reservados.
+            </footer>
+        </div>
+    </form>
+</div>
+</body>
+</html>

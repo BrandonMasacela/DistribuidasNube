@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Oauth2_Grupo6</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media.istockphoto.com/id/958693744/vector/abstract-red-light-trail-on-blue-background.jpg?s=1024x1024&w=0&k=20&c=NMWPgT3zSw2UxluLVNmhoQUcOuA_FgzQIvw5aDGQkVc=') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .form-signin {
+            background: rgba(16, 18, 27, 20%);
+            padding: 20px;
+            min-height: 50vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+            min-width: 60vh;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 50%);
+        }
+
+        .btn-primary {
+            border-radius: 10px;
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            font-size: 1.2rem;
+        }
+        .btn-primary1 {
+            border-radius: 10px;
+            background-color: #FF073D;
+            border-color: #FF073D;
+            font-size: 1.2rem;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 120px;
+            margin-bottom: 15px;
+        }
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+            justify-content: center; /* Centra el contenido verticalmente */
+            min-width: 50vh; /* Asegura que el contenedor ocupe al menos el ancho de la ventana */
+            padding: 70px;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <form class="form-signin" method="post" th:action="@{/logout}">
+        <div class="container1">
+            <img src="https://encuestas.espe.edu.ec/tmp/assets/46dd5aad/ESPE.png" alt="Logo" class="logo">
+            <h2 class="text-center text-white">¿Seguro que quieres cerrar sesión?</h2>
+            <br>
+            <button class="btn btn-lg btn-primary btn-outline-primary btn-block text-white" type="submit">SÍ</button>
+            <br>
+            <a th:href="@{http://tuURL:4200}" class="btn-primary1 btn-outline-secondary btn-block text-white">
+                <button class="btn btn-lg btn-primary1 btn-outline-secondary btn-block text-white" type="button">NO</button>
+            </a>
+            <br><br>
+            <footer class="text-white">
+                &copy; 2024 Todos los derechos reservados.
+            </footer>
+        </div>
+    </form>
+</div>
+</body>
+</html>
